@@ -1,6 +1,5 @@
 import { Router } from "express"
-import fs from 'fs/promises'
-import { config } from "../config.js";
+import { ProductManager } from "../managers/products.manager.js";
 
 const router=Router()
 const productManager = new ProductManager;
