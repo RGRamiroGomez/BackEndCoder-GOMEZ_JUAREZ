@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 import { config } from '../config.js';
 
-const dir = `${config.DIRNAME}/src/data/products.json`
+const dir = `${config.DIRNAME}/data/products.json`
 
 export class  ProductManager {
     
