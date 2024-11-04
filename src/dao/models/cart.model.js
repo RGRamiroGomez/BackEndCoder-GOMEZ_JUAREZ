@@ -1,11 +1,11 @@
 import mongoose from "mongoose"
 
-const collection= 'products'
+const collection= 'carts'
 const schema = new mongoose.Schema({
     products: [
         {
           pid: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Product',
             required: true
           },
@@ -18,5 +18,5 @@ const schema = new mongoose.Schema({
       ]
 }
 )
-const Product = mongoose.model(collection, schema)
-export  default Product
+const Cart = mongoose.model(collection, schema)
+export  default Cart

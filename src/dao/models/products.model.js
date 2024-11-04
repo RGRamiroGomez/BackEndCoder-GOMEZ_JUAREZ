@@ -1,34 +1,17 @@
 import mongoose from "mongoose"
 
-const collection = 'products'
-
-const schema =  new mongoose.Schema({
-    title: {
-        type: String,
-        required: true},
-    description: {
-      type: String,
-      required: true},
-    code: {
-      type: String,
-      required: true,
-      unique: true},
-    price: {
-      type: Number,
-      required: true},
-    status: {
-      type: Boolean,
-      default: true},
-    stock: {
-      type: Number,
-      required: true},
-    category: {
-      type: String,
-      required: true}
+const productSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  code: { type: String, required: true, unique: true },
+  price: { type: Number, required: true },
+  status: { type: Boolean, default: true },
+  stock: { type: Number, required: true },
+  category: { type: String, required: true }
 })
 
-const Cart =  mongoose.model(collection, schema)
+const Product = mongoose.model('Product', productSchema)
 
-export  default Cart
+export default Product
 
 

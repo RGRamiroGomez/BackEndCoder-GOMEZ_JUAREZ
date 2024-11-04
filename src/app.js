@@ -2,13 +2,15 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import { Server } from 'socket.io'
 import http from 'http'
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
 
 import productsRouter from './routes/products.router.js';
 import cartRouter from './routes/cart.router.js';
 import viewRouter from './routes/views.router.js';
 import { config } from './config.js';
 
-
+dotenv.config()
 const app=express()
 const server = http.createServer(app)
 const io = new Server(server)
@@ -29,8 +31,15 @@ io.on('connection', (socket) => {
 
 })
 
-server.listen(config.PORT, () => {
-    console.log(`Servidor escuchando en el puerto: ${config.PORT}`)
-})
+mongoose.connect(process.env.DB_HOST)
+  .then(() => {
+    console.log('Conectado a MongoDB')
+    server.listen(config.PORT, () => {
+      console.log(`Servidor escuchando en el puerto: ${config.PORT}`)
+    })
+  })
+  .catch(error => {
+    console.error('Error al conectar a MongoDB:', error)
+  })
  
 export {io}
