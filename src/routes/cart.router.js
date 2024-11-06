@@ -1,13 +1,13 @@
 // src/routes/cart.router.js
 import { Router } from 'express'
-import cartHandler from '../handlers/cart.handler.js'
+import cartController from '../controllers/cart.controller.js'
 
 const router = Router()
-router.get('/',cartHandler.getCarts)
-router.get('/:cid', cartHandler.getCart)
-router.put('/:cid', cartHandler.updateCart)
-router.put('/:cid/products/:pid', cartHandler.updateProductQuantity)
-router.delete('/:cid/products/:pid', cartHandler.removeProductFromCart)
-router.delete('/:cid', cartHandler.clearCart)
+router.get('/',cartController.getCarts)
+router.get('/:cid', cartController.getCart)
+router.put('/:cid', cartController.updateCart)
+router.put('/:cid/products/:pid', cartController.updateProductQuantity)
+router.delete('/:cid/products/:pid', cartController.removeProductFromCart)
+router.delete('/:cid', cartController.clearCart)
 
 export default router

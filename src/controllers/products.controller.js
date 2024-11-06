@@ -1,6 +1,6 @@
-import productController from '../dao/products.controller.js';
+import ProductServices from '../dao/products.services.js';
 
-class ProductHandler {
+class ProductController {
     async getProducts(req, res) {
         try {
           const { limit = 10, page = 1, sort, query } = req.query;
@@ -19,7 +19,7 @@ class ProductHandler {
             filter = { $or: [{ category: query }, { status: query }] };
           }
     
-          const result = await productController.getProducts(options, filter);
+          const result = await ProductServices.getProducts(options, filter);
     
           const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
     
@@ -45,7 +45,7 @@ class ProductHandler {
   async getProductById(req, res) {
     try {
       const { pid } = req.params;
-      const product = await productController.getProductById(pid);
+      const product = await ProductServices.getProductById(pid);
       if (!product) {
         return res.status(404).json({ status: 'error', message: 'Producto no encontrado' });
       }
@@ -58,7 +58,7 @@ class ProductHandler {
 
   async addProduct(req, res) {
     try {
-      const newProduct = await productController.addProduct(req.body);
+      const newProduct = await ProductServices.addProduct(req.body);
       res.status(201).json({ status: 'success', payload: newProduct });
     } catch (error) {
       console.error('Error en addProduct:', error);
@@ -69,7 +69,7 @@ class ProductHandler {
   async updateProduct(req, res) {
     try {
       const { pid } = req.params;
-      const updatedProduct = await productController.updateProduct(pid, req.body);
+      const updatedProduct = await ProductServices.updateProduct(pid, req.body);
       if (!updatedProduct) {
         return res.status(404).json({ status: 'error', message: 'Producto no encontrado' });
       }
@@ -83,7 +83,7 @@ class ProductHandler {
   async deleteProduct(req, res) {
     try {
       const { pid } = req.params;
-      const deletedProduct = await productController.deleteProduct(pid);
+      const deletedProduct = await ProductServices.deleteProduct(pid);
       if (!deletedProduct) {
         return res.status(404).json({ status: 'error', message: 'Producto no encontrado' });
       }
@@ -95,4 +95,4 @@ class ProductHandler {
   }
 }
 
-export default ProductHandler
+export default ProductController

@@ -1,6 +1,6 @@
-import Cart from '../dao/models/cart.model.js';
+import Cart from './models/cart.model.js';
 
-class CartController {
+class CartServices {
     async getCarts(){
         return await  Cart.find()
 
@@ -40,4 +40,4 @@ class CartController {
     }
 }
 
-export default new CartController()
+export default new CartServices()

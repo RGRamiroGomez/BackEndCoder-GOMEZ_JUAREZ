@@ -1,6 +1,6 @@
-import Product from '../dao/models/products.model.js'
+import Product from './models/products.model.js'
 
-class ProductController {
+class ProductServices {
   async getProducts() {
     return await Product.find().lean()
   }
@@ -22,4 +22,4 @@ class ProductController {
   }
 }
 
-export default new ProductController()
+export default new ProductServices()
